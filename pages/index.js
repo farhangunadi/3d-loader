@@ -1,32 +1,49 @@
-import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
 import Head from "next/head";
-import { Suspense } from "react";
-import { BaseSceneInfo } from "../components/BaseScene";
-import { Joglo } from "../Joglo";
+import { Container, Row, Col } from "react-bootstrap";
+import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { Tree } from "../TreeLP3";
+import Link from "next/link";
 
+//component
+import { NavigationBar } from "../components/Navbar/NavigationBar";
+
+//assets image
+import vectorVR from "../assets/vr 1.jpg";
 export default function Home() {
   return (
-    <div className={styles.container}>
-      {/* <Canvas shadows camera={{ position: [20, 5, 10], fov: 100, near: 1 }}>
-        <group>
-          <ambientLight intensity={0.6} />
-          <spotLight penumbra={0.5} position={[10, 10, 10]} castShadow />
-        </group>
-        <Suspense fallback={null}>
-          <mesh scale={2}>
-            <boxGeometry />
-            <meshBasicMaterial color="red" />
-          </mesh>
-          <Tree />
-        </Suspense>
-        <OrbitControls autoRotate />
-      </Canvas> */}
-      <BaseSceneInfo>
-        <Joglo />
-      </BaseSceneInfo>
-    </div>
+    <>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <NavigationBar />
+      <section className={styles.landing_page}>
+        <Container className={styles.wrap_content}>
+          <Row>
+            <Col className={styles.content1}>
+              <h1 className={styles.title1}>PUSDIKLAT</h1>
+              <h2 className={styles.title2}>Virtual Tour Experience</h2>
+              <Link href="/gameplay" className={styles.link_btn_play}>
+                <button className={styles.btn_play}>Play</button>
+              </Link>
+            </Col>
+            <Col className={styles.content2}>
+              <Image
+                src={vectorVR}
+                alt="VR Model"
+                quality={100}
+                className={styles.content_img}
+              />
+            </Col>
+          </Row>
+          <div className={styles.circle1}></div>
+          <div className={styles.circle2}></div>
+        </Container>
+      </section>
+    </>
   );
 }
